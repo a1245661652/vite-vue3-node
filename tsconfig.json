@@ -10,7 +10,13 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "types": ["node"]
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "http://*": ["../../../.deno/deps/http/*"],
+      "https://*": ["../../../.deno/deps/https/*"],
+      "*.ts": ["*"]
+    }
   },
   "include": ["src/**/*.ts","src/**/*.d.ts","**/*.tsx", "src/**/*.tsx", "src/**/*.vue"],
   "exclude": ["node_modules"],
