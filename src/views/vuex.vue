@@ -1,8 +1,10 @@
-<template></template>
+<template>
+  <div></div>
+</template>
 
 <script>
 export default {
-  name: 'vuex.vue'
+  name: 'vueX'
 }
 </script>
 

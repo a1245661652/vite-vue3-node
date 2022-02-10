@@ -1,11 +1,13 @@
-<template></template>
+<template>
+  <div></div>
+</template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import axios from 'axios'
 
 export default defineComponent({
-  name: 'Axios',
+  name: 'axiosIndex',
   setup() {
     axios
       .get('/users/XPost')
