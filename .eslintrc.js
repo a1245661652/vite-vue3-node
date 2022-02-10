@@ -2,19 +2,33 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    'vue/setup-compiler-macros': true
+    node: true
   },
   extends: [
     'plugin:vue/essential',
     'airbnb-base',
-    'plugin:jest/recommended',
-    'plugin:prettier/recommended' // 添加 prettier 插件
+    'plugin:prettier/recommended',
+    'plugin:jest/recommended'
   ],
   parserOptions: {
-    ecmaVersion: 'latest',
+    ecmaVersion: 12,
     parser: '@typescript-eslint/parser',
     sourceType: 'module'
   },
   plugins: ['vue', '@typescript-eslint'],
-  rules: {}
+  rules: {
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
+    'import/no-absolute-path': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'vue/no-multiple-template-root': 'off',
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['state', 'config']
+      }
+    ]
+  },
+  settings: {}
 }
