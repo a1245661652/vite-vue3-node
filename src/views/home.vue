@@ -19,7 +19,7 @@
       </el-col>
       <el-col :span="7">
         <el-card shadow="hover"
-          ><span class="">{{ currentTimeTrue }}</span></el-card
+          ><span class="">{{ currentTime }}</span></el-card
         >
       </el-col>
       <el-col :span="7">
@@ -39,16 +39,15 @@ export default defineComponent({
     return {
       msgContent: '',
       msgAuthor: '',
-      currentTime: Date.now(), // 获取当前时间
-      currentTimeTrue: ''
+      currentTime: '', // 获取当前时间
+      timer: 0
     }
   },
   created() {
-    const thisX = this // 声明一个变量指向Vue实例this，保证作用域一致
-    this.timer = setInterval(
-      (thisX.currentTimeTrue = thisX.getTime(thisX.currentTime)),
-      1000
-    )
+    const thisX = this
+    this.timer = setInterval(function () {
+      thisX.getTime()
+    }, 1000)
   },
   mounted() {
     this.loadSentence()
@@ -70,16 +69,22 @@ export default defineComponent({
         }
       )
     },
-    getTime(time) {
-      const date = new Date(time)
-      const y = date.getFullYear()
-      const m =
-        date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
-      const d = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
-      console.log(`${y}-${m}-${d}`)
-      return `${y}-${m}-${d}`
-    },
-    timer() {}
+    getTime() {
+      const yy = new Date().getFullYear()
+      const mm = new Date().getMonth() + 1
+      const dd = new Date().getDate()
+      const hh = new Date().getHours()
+      const mf =
+        new Date().getMinutes() < 10
+          ? `0${new Date().getMinutes()}`
+          : new Date().getMinutes()
+      const ss =
+        new Date().getSeconds() < 10
+          ? `0${new Date().getSeconds()}`
+          : new Date().getSeconds()
+      this.currentTime = `${yy}-${mm}-${dd} ${hh}:${mf}:${ss}`
+      console.log(this.currentTime)
+    }
   }
 })
 </script>
