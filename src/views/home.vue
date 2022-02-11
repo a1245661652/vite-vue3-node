@@ -1,11 +1,22 @@
 <template>
-  <div></div>
+  <div class="home-container page-container">
+    <img class="vue-element-plus-logo" alt="Vue logo" src="../assets/logo.png" />
+    <div class="page-title">Vite2.x + Vue3.x + TypeScript + Element Plus</div>
+  </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'homeIndex'
-}
+})
 </script>
 
-<style scoped lang="stylus"></style>
+<style scoped lang="stylus">
+.home-container {
+  .vue-element-plus-logo {
+    width 50%
+  }
+}
+</style>
