@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/axios',
-    name: 'Axiox',
+    name: 'Axios',
     component: () => import('../views/axios.vue') // 懒加载组件
   },
   {
