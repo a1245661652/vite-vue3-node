@@ -32,6 +32,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { load } from 'jinrishici/jinrishici'
+// import { ElLoading } from 'element-plus'
 
 export default defineComponent({
   name: 'homeIndex',
@@ -40,19 +41,31 @@ export default defineComponent({
       msgContent: '',
       msgAuthor: '',
       currentTime: '', // 获取当前时间
-      timer: 0
+      timer: 0,
+      options: {
+        // 声明一个loading对象
+        lock: true, // 是否锁屏
+        text: '正在加载...', // 加载动画的文字
+        spinner: 'el-icon-loading', // 引入的loading图标
+        background: 'rgba(0, 0, 0, 0.3)', // 背景颜色
+        target: '.home-container.page-container', // 需要遮罩的区域
+        body: true,
+        customClass: 'mask' // 遮罩层新增类名
+      }
     }
   },
   created() {
     const thisX = this
-    this.timer = setInterval(function () {
+    this.timer = window.setInterval(function () {
       thisX.getTime()
     }, 1000)
+    // ElLoading.service(this.options)
   },
   mounted() {
     this.loadSentence()
   },
-  beforeDestroy() {
+  beforeUnmount() {
+    console.log(this.timer)
     if (this.timer) {
       clearInterval(this.timer) // 在Vue实例销毁前，清除我们的定时器
     }
@@ -83,13 +96,15 @@ export default defineComponent({
           ? `0${new Date().getSeconds()}`
           : new Date().getSeconds()
       this.currentTime = `${yy}-${mm}-${dd} ${hh}:${mf}:${ss}`
-      console.log(this.currentTime)
     }
   }
 })
 </script>
 
 <style scoped lang="stylus">
+body {
+  margin: 0;
+}
 .home-container {
 
 }
