@@ -1,11 +1,11 @@
 <template>
   <div class="home-container page-container">
-    <el-row id="homeTag" :gutter="24">
-      <el-col :span="10">
+    <el-row v-loading="loading" id="homeTag" :gutter="24">
+      <el-col :span="10" class="cardWelcome">
         <el-card shadow="hover">
           <div class="WelcomeBox">
             <img
-              src="https://jack-img.oss-cn-hangzhou.aliyuncs.com/img/20210605145617.jpg"
+              src="https://jack-img.oss-cn-hangzhou.aliyuncs.com/img/20210326164733.jpg"
               class="home-avatar"
             />
             <span class="welcomeTitle"
@@ -17,13 +17,13 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="7">
+      <el-col :span="7" class="cardNowTime">
         <el-card shadow="hover"
           ><span class="">{{ currentTime }}</span></el-card
         >
       </el-col>
       <el-col :span="7">
-        <el-card shadow="hover"> Hover </el-card>
+        <el-card shadow="hover"> 公告 </el-card>
       </el-col>
     </el-row>
   </div>
@@ -42,24 +42,15 @@ export default defineComponent({
       msgAuthor: '',
       currentTime: '', // 获取当前时间
       timer: 0,
-      options: {
-        // 声明一个loading对象
-        lock: true, // 是否锁屏
-        text: '正在加载...', // 加载动画的文字
-        spinner: 'el-icon-loading', // 引入的loading图标
-        background: 'rgba(0, 0, 0, 0.3)', // 背景颜色
-        target: '.home-container.page-container', // 需要遮罩的区域
-        body: true,
-        customClass: 'mask' // 遮罩层新增类名
-      }
+      loading: true
     }
   },
   created() {
     const thisX = this
+    thisX.getTime()
     this.timer = window.setInterval(function () {
       thisX.getTime()
     }, 1000)
-    // ElLoading.service(this.options)
   },
   mounted() {
     this.loadSentence()
@@ -76,6 +67,7 @@ export default defineComponent({
         (result) => {
           this.msgContent = result.data.content
           this.msgAuthor = `  ——  ${result.data.origin.author}`
+          this.loading = false
         },
         (err) => {
           console.log(err)
@@ -101,7 +93,8 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="stylus">
+<style lang="stylus">
+
 body {
   margin: 0;
 }
@@ -118,6 +111,12 @@ body {
   -ms-user-select: none;
   user-select: none;
   flex: 2 1;
+}
+.cardWelcome{
+  min-width: 530px;
+}
+.cardNowTime{
+  min-width: 220px;
 }
 .home-avatar {
   position: absolute;
