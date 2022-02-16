@@ -1,1 +1,0 @@
-import{_ as e}from"./index.6b01a7a1.js";import{c as t,o}from"./vendor.fcb21ced.js";const r={name:"articLe"},a={class:"test-container page-container"};function c(n,s,i,_,p,f){return o(),t("div",a)}var l=e(r,[["render",c]]);export{l as default};
