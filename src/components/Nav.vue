@@ -17,7 +17,7 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { NavItem } from '../common/types/index.ts'
+import { NavItem } from '../common/types/index'
 
 export default defineComponent({
   name: 'NavIndex',
