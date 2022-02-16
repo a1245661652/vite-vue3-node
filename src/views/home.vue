@@ -1,7 +1,7 @@
 <template>
   <div class="home-container page-container">
     <el-row v-loading="loading" id="homeTag" :gutter="24">
-      <el-col :span="10" class="cardWelcome">
+      <el-col :span="10" class="cardWelcome" attrTest="testTT">
         <el-card shadow="hover">
           <div class="WelcomeBox">
             <img
@@ -111,9 +111,6 @@ body {
   -ms-user-select: none;
   user-select: none;
   flex: 2 1;
-}
-.cardWelcome{
-  min-width: 530px;
 }
 .cardNowTime{
   min-width: 220px;
